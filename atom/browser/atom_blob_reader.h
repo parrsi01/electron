@@ -46,10 +46,10 @@ class AtomBlobReader {
   // Must be accessed on IO thread.
   class BlobReadHelper {
    public:
-    using CompletionCallback = base::Callback<void(char*, int)>;
+    using CompletionCallback = base::OnceCallback<void(char*, int)>;
 
     BlobReadHelper(std::unique_ptr<storage::BlobReader> blob_reader,
-                   const BlobReadHelper::CompletionCallback& callback);
+                   BlobReadHelper::CompletionCallback callback);
     ~BlobReadHelper();
 
     void Read();
